@@ -1,0 +1,330 @@
+fileFormatVersion: 2
+guid: 49ef25fe981121644b0bc342bfb81898
+timeCreated: 1431450260
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: pack_0
+    21300002: pack_1
+    21300004: pack_2
+    21300006: pack_3
+    21300008: pack_4
+    21300010: pack_5
+    21300012: pack_6
+    21300014: pack_7
+    21300016: pack_8
+    21300018: pack_9
+    21300020: pack_10
+    21300022: pack_11
+    21300024: pack_12
+    21300026: pack_13
+    21300028: pack_14
+    21300030: pack_15
+    21300032: pack_16
+    21300034: pack_17
+    21300036: pack_18
+    21300038: pack_19
+    21300040: pack_20
+    21300042: pack_21
+    21300044: pack_22
+    21300046: pack_23
+    21300048: pack_24
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: pack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 111
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 111
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 111
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 111
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 94
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_5
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 94
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_6
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 94
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_7
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 94
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 77
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_9
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 77
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_10
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 77
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_11
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 77
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 60
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_13
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 60
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_14
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 60
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_15
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 60
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 43
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_17
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 43
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_18
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 43
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_19
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 43
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 26
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_21
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 26
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_22
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 26
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_23
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 26
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pack_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
