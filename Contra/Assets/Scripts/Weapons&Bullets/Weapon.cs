@@ -9,8 +9,9 @@ public class Weapon : PausableMonoBehavior
 
     public float visualKick = 0.3f;                         //intensity of gun sprite's visual kick
     public float screenShakeKick = 0.3f;                    //intensity of gun's screenshake
-    public float screenShakeDegredation = 0.5f;            //rate at which screen returns to normal, higher = slower to stop
+    public float screenShakeDegredation = 0.5f;             //rate at which screen returns to normal, higher = slower to stop
     public float tangibleKick = 0.3f;                       //amount of force to push player back
+    public float bulletInaccuracy = 0.05f;                  //min/max velocity difference from standard the bullet can be aimed
     
     public bool fullauto = true;                            //can the player hold down shoot button or do they need to tap
     public float fireRate = 0.1f;                           //minimum time between firing, lower = faster fire rate
@@ -24,7 +25,7 @@ public class Weapon : PausableMonoBehavior
     [Range(-1f, 1f)]
     public float bulletVelocityY = 0.0f;                    //
 
-    public void Start()
+    public virtual void Start()
     {
         currentInClip = clipSize;
         nextFireTime = 0.0f;
@@ -32,7 +33,7 @@ public class Weapon : PausableMonoBehavior
         camShake = Camera.main.GetComponent<CameraShake>();
     }
 
-    public void Shoot()
+    public virtual void Shoot()
     {
         //check if you can fire yet (recently fired/reloading/outOfBullets)
         if(!reloading && Time.time > nextFireTime)
@@ -41,7 +42,9 @@ public class Weapon : PausableMonoBehavior
             {
                 //create a bullet
                 GameObject bullet = projectileType.Spawn(_transform.position + (Vector3)muzzleLocation);
-                bullet.GetComponent<Projectile>().SetDirection(Mathf.Sign(_transform.parent.localScale.x), bulletVelocityY);
+                bullet.GetComponent<Projectile>().SetDirection(
+                    Mathf.Sign(_transform.parent.localScale.x), 
+                    bulletVelocityY + Random.Range(-bulletInaccuracy, bulletInaccuracy));
                 //shake the screen
                 camShake.Shake(screenShakeKick, screenShakeDegredation, (int)Mathf.Sign(_transform.parent.localScale.x), 0);
                 //set next fire time
