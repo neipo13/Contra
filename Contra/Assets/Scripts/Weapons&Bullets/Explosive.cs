@@ -12,7 +12,11 @@ public class Explosive : Projectile
     } 
     public override void OnCollisionEnter2D(Collision2D col)
     {
-        if (!(col.collider.tag == "ground" && _rigidbody.velocity.y > 0))
+        if (col.collider.tag == "bulletDestroyer")
+        {
+            gameObject.Recycle();
+        }
+        else if (!(col.collider.tag == "ground" && _rigidbody.velocity.y > 0))
         {
             //spawn an explosion
             explosion.Spawn(_transform.position);

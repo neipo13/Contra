@@ -5,9 +5,9 @@ public class Push3DtoFront : MonoBehaviour
 {
     public string layerToPushTo;
 
-	// Use this for initialization
-	void Awake () 
+	void Start () 
     {
-        GetComponent<Renderer>().sortingLayerID = LayerMask.NameToLayer(layerToPushTo);
+        GetComponent<Renderer>().sortingLayerName = layerToPushTo;
+        //Debug.Log(GetComponent<Renderer>().sortingLayerName);
 	}
 }

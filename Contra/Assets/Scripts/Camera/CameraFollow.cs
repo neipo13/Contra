@@ -16,6 +16,8 @@ public class CameraFollow : PausableMonoBehavior
     public float camZPostion = -10f;            //default z position, for 2D cameras this is typically -10f
     public float camYmin = 0.0f;                //min height for camera
     public float camYmax = 10.0f;               //max height for camera
+    public float camXmin = 0.0f;
+    public float camXmax = 50.0f;
 
     public bool yLocked = false;                //should the camera be locked in place in the y direction
     public bool xLocked = false;                //should the camera be locked in place in the x direction
@@ -109,10 +111,17 @@ public class CameraFollow : PausableMonoBehavior
         {
             newTarget.x = lastXPosition;
         }
-            //otherwise follow the target and recognize where the camera has moved toward for the next frame
+            //otherwise if the target is within the camera bounds follow the target and recognize where the camera has moved toward for the next frame
         else
         {
-            lastXPosition = newTarget.x;
+            if (newTarget.x <= camXmin || newTarget.x >= camXmax)
+            {
+                newTarget.x = lastXPosition;
+            }
+            else
+            {
+                lastXPosition = newTarget.x;
+            }
         }
     }
     #endregion

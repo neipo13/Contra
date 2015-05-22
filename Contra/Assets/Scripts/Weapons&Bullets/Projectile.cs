@@ -5,6 +5,7 @@ public class Projectile : PausableMonoBehavior
 {
     public float moveSpeed = 5.0f;              //how fast it moves
     protected Vector2 moveDirection;            //direction to move in x and y
+    public float maxLifetimeInSeconds = 10.0f;  //maximum number of seconds this object can live
 
     private float originalXScale;
 
@@ -31,11 +32,17 @@ public class Projectile : PausableMonoBehavior
             _transform.localScale = new Vector3(originalXScale, _transform.localScale.y, _transform.localScale.z);
         }
         _rigidbody.velocity = moveDirection.normalized * moveSpeed;
+        Invoke("LivedTooLong", maxLifetimeInSeconds);
     }
 
     public virtual void OnCollisionEnter2D(Collision2D col)
     {
             gameObject.Recycle();
+    }
+
+    public virtual void LivedTooLong()
+    {
+        gameObject.Recycle();
     }
 
 }
