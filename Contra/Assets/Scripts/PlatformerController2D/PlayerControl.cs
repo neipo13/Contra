@@ -83,8 +83,6 @@ public class PlayerControl : PausableMonoBehavior
 
             velocity.y -= gravity * Time.deltaTime;
 
-            controller.move(velocity * Time.deltaTime);
-
             if (Mathf.Abs(velocity.x) > 0 && controller.isGrounded)
             {
                 _animator.SetBool("walking", true);
@@ -94,6 +92,11 @@ public class PlayerControl : PausableMonoBehavior
                 _animator.SetBool("walking", false);
             }
         }
+    }
+
+    void FixedUpdate()
+    {
+        controller.move(velocity * Time.deltaTime);
     }
 
     void SpriteFlip()

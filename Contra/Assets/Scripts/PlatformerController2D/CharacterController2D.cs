@@ -227,7 +227,7 @@ public class CharacterController2D : MonoBehaviour
 
 
 	[System.Diagnostics.Conditional( "DEBUG_CC2D_RAYS" )]
-	private void DrawRay( Vector3 start, Vector3 dir, Color color )
+	public void DrawRay( Vector3 start, Vector3 dir, Color color )
 	{
 		Debug.DrawRay( start, dir, color );
 	}
