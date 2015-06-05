@@ -70,7 +70,8 @@ public class EnemyController : PausableMonoBehavior
 
     public virtual void FixedUpdate()
     {
-        controller.move(velocity * Time.deltaTime);
+        if(!paused)
+            controller.move(velocity * Time.deltaTime);
     }
 
     public void SpriteFlip()

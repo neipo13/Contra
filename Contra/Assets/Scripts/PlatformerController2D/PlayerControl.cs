@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Prime31.ZestKit;
 
 [RequireComponent(typeof (CharacterController2D))]
-public class PlayerControl : PausableMonoBehavior 
+public class PlayerControl : BouncyCharacter 
 {
     public float moveSpeed = 8.0f;
     public float gravity = 15.0f;
@@ -15,12 +16,18 @@ public class PlayerControl : PausableMonoBehavior
     protected CharacterController2D controller;
     protected Vector2 velocity;
 
+    protected Transform _spriteTransform;
+
     public override void Awake()
     {
         base.Awake();
         controller = GetComponent<CharacterController2D>();
         weaponManager = GetComponent<WeaponManager>();
         doubleJumpUsed = false;
+        //get sprite/animator data from child
+        _animator = GetComponentInChildren<Animator>();
+        _spriteTransform = _animator.gameObject.GetComponent<Transform>();
+        startingScale = _spriteTransform.localScale;
     }
 
     void Update()
@@ -33,6 +40,13 @@ public class PlayerControl : PausableMonoBehavior
             {
                 velocity.y = 0.0f;
                 doubleJumpUsed = false;
+                if(!controller.wasGroundedLastFrame)
+                {
+                    //Debug.Log("Was not grounded last frame");
+                    //bounce
+                    _spriteTransform.localScale = new Vector3(startingScale.x * 1.25f, startingScale.y * .75f, startingScale.z);
+                    _spriteTransform.ZKlocalScaleTo(startingScale, 0.2f).start();
+                }
             }
 
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
@@ -70,14 +84,19 @@ public class PlayerControl : PausableMonoBehavior
             //jump
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                
                 if (controller.isGrounded)
                 {
                     velocity.y = Mathf.Sqrt(2f * targetJumpHeight * gravity);
+                    _spriteTransform.localScale = new Vector3(startingScale.x * 0.75f, startingScale.y * 1.25f, startingScale.z);
+                    _spriteTransform.ZKlocalScaleTo(startingScale, 0.3f).start();
                 }
                 else if (canDoubleJump && !doubleJumpUsed)
                 {
                     doubleJumpUsed = true;
                     velocity.y = Mathf.Sqrt(1.5f * targetJumpHeight * gravity);
+                    _spriteTransform.localScale = new Vector3(startingScale.x * 0.75f, startingScale.y * 1.25f, startingScale.z);
+                    _spriteTransform.ZKlocalScaleTo(startingScale, 0.3f).start();
                 }
             }
 
@@ -96,7 +115,8 @@ public class PlayerControl : PausableMonoBehavior
 
     void FixedUpdate()
     {
-        controller.move(velocity * Time.deltaTime);
+        if(!paused)
+            controller.move(velocity * Time.deltaTime);
     }
 
     void SpriteFlip()

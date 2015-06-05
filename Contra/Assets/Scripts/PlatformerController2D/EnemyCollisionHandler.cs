@@ -17,7 +17,7 @@ public class EnemyCollisionHandler : MonoBehaviour
     {
         //reset the localPosition so it stays with the parent
         _transform.localPosition = Vector3.zero;
-        Debug.Log("Hit " + col.collider.name);
+        //Debug.Log("Hit " + col.collider.name);
         //add anything you want to happen on collisionenter here
         if(col.collider.tag == "playerBullet")
         {

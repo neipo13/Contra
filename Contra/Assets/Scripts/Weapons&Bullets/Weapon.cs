@@ -77,10 +77,10 @@ public class Weapon : PausableMonoBehavior
 
     IEnumerator ReloadTimer()
     {
-        Debug.Log("Reloading");
+        //Debug.Log("Reloading");
         yield return new WaitForSeconds(reloadSpeed);
         currentInClip = clipSize;
         reloading = false;
-        Debug.Log("done");
+        //Debug.Log("done");
     }
 }
