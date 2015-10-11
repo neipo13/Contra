@@ -16,6 +16,11 @@ public class PlayerCollisionHandler : MonoBehaviour
     {
         //reset localposition to keep rigidbody2D in correct place
         _transform.localPosition = Vector3.zero;
+        if(col.collider.tag == "enemyHitbox")
+        {
+            Debug.Log("Player Hit");
+            col.transform.parent.gameObject.Recycle();
+        }
     }
 
     public virtual void OnCollisionStay2D(Collision2D col)

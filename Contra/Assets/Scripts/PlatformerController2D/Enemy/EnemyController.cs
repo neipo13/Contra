@@ -20,6 +20,9 @@ public class EnemyController : PausableMonoBehavior
 
     public bool walksOffCliffs = false;                     //determines if the enemy should behave differently when reaching a cliff or ledge
 
+    public enum EnemyStates { Patrol, Alert, Chase, Shoot, Die}
+    protected StateMachine<EnemyStates> _sm;
+
     public override void Awake()
     {
         base.Awake();
@@ -32,39 +35,23 @@ public class EnemyController : PausableMonoBehavior
         {
             _transform.localScale = new Vector3(-_transform.localScale.x, _transform.localScale.y, _transform.localScale.z);
         }
-    }
+        CreateStateMachine();
 
+    }
+    public virtual void CreateStateMachine()
+    {
+        _sm = new StateMachine<EnemyStates>();
+        _sm.Entity = gameObject;
+        _sm.Script = this;
+        _sm.Added();
+        _sm.ChangeState(EnemyStates.Patrol);
+    }
     public virtual void Update()
     {
         //if game is not paused
         if (!paused)
         {
-            //set velocity
-            velocity = new Vector2(moveSpeed * direction, controller.velocity.y);
-            //velocity = controller.velocity;
-            //if character does not walk off cliffs, 
-            if (!walksOffCliffs && turnTimer < 0)
-            {
-                raycastOrigin = new Vector2(_transform.position.x, controller.boxCollider.bounds.min.y);
-                //check if raycast on either side is no longer over ground,
-                RaycastHit2D hitR = Physics2D.Raycast(raycastOrigin + raycastVec, -Vector2.up);
-                RaycastHit2D hitL = Physics2D.Raycast(raycastOrigin - raycastVec, -Vector2.up);
-                //Draw the rays for debugging
-                controller.DrawRay(raycastOrigin + raycastVec, -Vector2.up, Color.cyan);
-                controller.DrawRay(raycastOrigin - raycastVec, -Vector2.up, Color.cyan);
-                //if it is not over ground, call appropriate function
-                if(hitR.collider == null || hitR.collider.tag != "ground" 
-                    || hitL.collider == null || hitL.collider.tag != "ground")
-                {
-                    CliffFound();
-                }
-            }
-            else if(turnTimer > 0)
-            {
-                turnTimer -= Time.deltaTime;
-            }
-            //otherwise continue movement
-            velocity.y -= gravity * Time.deltaTime;
+            _sm.Update();
         }
     }
 
@@ -84,5 +71,35 @@ public class EnemyController : PausableMonoBehavior
     {
         turnTimer = turnTime;
         SpriteFlip();
+    }
+
+    public void UpdatePatrol()
+    {
+        //set velocity
+        velocity = new Vector2(moveSpeed * direction, controller.velocity.y);
+        //velocity = controller.velocity;
+        //if character does not walk off cliffs, 
+        if (!walksOffCliffs && turnTimer < 0)
+        {
+            raycastOrigin = new Vector2(_transform.position.x, controller.boxCollider.bounds.min.y);
+            //check if raycast on either side is no longer over ground,
+            RaycastHit2D hitR = Physics2D.Raycast(raycastOrigin + raycastVec, -Vector2.up);
+            RaycastHit2D hitL = Physics2D.Raycast(raycastOrigin - raycastVec, -Vector2.up);
+            //Draw the rays for debugging
+            controller.DrawRay(raycastOrigin + raycastVec, -Vector2.up, Color.cyan);
+            controller.DrawRay(raycastOrigin - raycastVec, -Vector2.up, Color.cyan);
+            //if it is not over ground, call appropriate function
+            if (hitR.collider == null || hitR.collider.tag != "ground"
+                || hitL.collider == null || hitL.collider.tag != "ground")
+            {
+                CliffFound();
+            }
+        }
+        else if (turnTimer > 0)
+        {
+            turnTimer -= Time.deltaTime;
+        }
+        //otherwise continue movement
+        velocity.y -= gravity * Time.deltaTime;
     }
 }

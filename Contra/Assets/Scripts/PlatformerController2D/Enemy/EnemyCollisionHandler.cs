@@ -22,8 +22,20 @@ public class EnemyCollisionHandler : MonoBehaviour
         if(col.collider.tag == "playerBullet")
         {
             col.gameObject.Recycle();
+            this.SendMessageUpwards("TakeDamage", 1);
+            //_transform.parent.gameObject.Recycle();
+            //this.gameObject.Recycle();
         }
-        _enemyController.SpriteFlip();
+        else if(col.collider.tag == "Player")
+        {
+            //Debug.Log("Player hit!");
+            _transform.parent.gameObject.Recycle();
+        }
+        else if (col.collider.tag == "enemyDestroyer")
+        {
+            _transform.parent.gameObject.Recycle();
+        }
+        //_enemyController.SpriteFlip();
     }
 
     public virtual void OnCollisionStay2D(Collision2D col)

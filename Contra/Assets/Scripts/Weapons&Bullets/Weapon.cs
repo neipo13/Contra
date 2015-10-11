@@ -22,6 +22,9 @@ public class Weapon : PausableMonoBehavior
     public float reloadSpeed = 0.5f;                        //amount of time to refill a clip, lower = reload faster
     protected bool reloading = false;                       //flag for reloading
 
+    protected float cameraOrthoSize = 5;                    //gets the camera size for orthographic camera
+    protected Transform crosshairTrans;                        //the transform of the crosshair
+
     [Range(-1f, 1f)]
     public float bulletVelocityY = 0.0f;                    //
 
@@ -31,6 +34,20 @@ public class Weapon : PausableMonoBehavior
         nextFireTime = 0.0f;
         projectileType.CreatePool(clipSize + 1);
         camShake = Camera.main.GetComponent<CameraShake>();
+        crosshairTrans = GameObject.Find("crosshair").GetComponent<Transform>();
+    }
+
+    public virtual void Update()
+    {
+        Vector3 mouse_pos = crosshairTrans.position;
+        mouse_pos.z = cameraOrthoSize; //The distance between the camera and object
+        //transformPosWorld = Camera.main.WorldToScreenPoint(transform.position);
+        mouse_pos.x = mouse_pos.x - _transform.position.x;
+        mouse_pos.y = mouse_pos.y - _transform.position.y;
+        float angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
+        //limit the angle so that the gun does not spin around completely
+        if(angle < 55 && angle > -55)
+            _transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
     public virtual void Shoot()
@@ -42,9 +59,9 @@ public class Weapon : PausableMonoBehavior
             {
                 //create a bullet
                 GameObject bullet = projectileType.Spawn(_transform.position + (Vector3)muzzleLocation);
-                bullet.GetComponent<Projectile>().SetDirection(
-                    Mathf.Sign(_transform.parent.localScale.x), 
-                    bulletVelocityY + Random.Range(-bulletInaccuracy, bulletInaccuracy));
+                float x = crosshairTrans.position.x - _transform.position.x + Random.Range(-bulletInaccuracy, bulletInaccuracy);
+                float y = crosshairTrans.position.y - _transform.position.y + Random.Range(-bulletInaccuracy, bulletInaccuracy);
+                bullet.GetComponent<Projectile>().SetDirection(x, y);
                 //shake the screen
                 camShake.Shake(screenShakeKick, screenShakeDegredation, (int)Mathf.Sign(_transform.parent.localScale.x), 0);
                 //set next fire time

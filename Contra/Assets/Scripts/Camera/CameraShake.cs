@@ -19,9 +19,9 @@ public class CameraShake : MonoBehaviour
     public int verticalDirection = 0;
 
     //USED FOR NON-MOVING CAMERAS
-    //private Transform _transform;
-    // private Vector3 originalCamPos;
-    //private bool centered;
+    private Transform _transform;
+    private Vector3 originalCamPos;
+    private bool centered;
 
 
     void Start()
@@ -30,9 +30,9 @@ public class CameraShake : MonoBehaviour
         cam = GetComponent<Camera>();
 
         //USED FOR NON-MOVING CAMERAS
-        //_transform = GetComponent<Transform>();
-        //originalCamPos = new Vector3(0f,0f,-10f);
-        //centered = true;
+        _transform = GetComponent<Transform>();
+        originalCamPos = new Vector3(0f, 0f, -10f);
+        centered = true;
 
         //create the tween for future use with default values
         camShaker = new CameraShakeTween(cam, 0.3f, 0.95f, Vector3.zero);
@@ -49,6 +49,7 @@ public class CameraShake : MonoBehaviour
         camShaker.shake(intensity, degredation, new Vector3(horizDir, verticalDir, 0f));
         //USED FOR NON-MOVING CAMERAS
         //originalCamPos = _transform.position;
+        centered = false;
     }
 
     public void Shake()
@@ -56,7 +57,6 @@ public class CameraShake : MonoBehaviour
         camShaker.shake(defaultIntensity, defaultyDegredation, new Vector3(horizontalDirection, verticalDirection, 0f));
     }
 
-    /*
         //USED FOR NON-MOVING CAMERAS
     void FixedUpdate()
     {
@@ -65,7 +65,7 @@ public class CameraShake : MonoBehaviour
             _transform.position = Vector3.Lerp(_transform.position, originalCamPos, 0.1f);
             if(Mathf.Abs(_transform.position.x) < 0.001f && Mathf.Abs(_transform.position.y) < 0.001f)
             {
-                Debug.Log("RECENTERED");
+                //Debug.Log("RECENTERED");
                 _transform.position = originalCamPos;
                 centered = true;
             }
@@ -76,5 +76,4 @@ public class CameraShake : MonoBehaviour
     {
         centered = false;
     }
-    */
 }
