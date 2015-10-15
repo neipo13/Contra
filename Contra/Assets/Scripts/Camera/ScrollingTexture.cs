@@ -6,7 +6,7 @@ public class ScrollingTexture : MonoBehaviour
 {
     Material mat;
     Vector2 offset;
-    public float scrollSpeed = 0.5f;
+    public float scrollSpeedModifer = 0.5f;
 
     void Start()
     {
@@ -16,7 +16,7 @@ public class ScrollingTexture : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        offset.x += Time.deltaTime * scrollSpeed;
+        offset.x += Time.deltaTime * scrollSpeedModifer * StaticGameVariables.gameSpeed;
         mat.mainTextureOffset = offset;
     }
 }
