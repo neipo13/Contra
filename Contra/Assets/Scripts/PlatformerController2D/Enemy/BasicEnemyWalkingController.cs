@@ -11,7 +11,7 @@ public class BasicEnemyWalkingController : PausableMonoBehavior
     private Vector2 raycastVec;                             //for easy use
     private Vector2 raycastOrigin;
     private float turnTime = 0.2f;                          //amount of time to ignore ledge detection to allow character to move away from cliff
-    private float turnTimer;
+    //private float turnTimer;
 
     protected CharacterController2D controller;
     protected Vector2 velocity;
@@ -30,7 +30,7 @@ public class BasicEnemyWalkingController : PausableMonoBehavior
         controller = GetComponent<CharacterController2D>();
         controller.velocity = new Vector2(moveSpeed * direction, 0f);
         raycastVec = new Vector2(raycastDist, 0);
-        turnTimer = -1f;
+        //turnTimer = -1f;
         //if the sprite is starting facing left, flip it
         if (direction == -1)
         {
@@ -70,7 +70,7 @@ public class BasicEnemyWalkingController : PausableMonoBehavior
 
     public virtual void CliffFound()
     {
-        turnTimer = turnTime;
+        //turnTimer = turnTime;
         SpriteFlip();
     }
 

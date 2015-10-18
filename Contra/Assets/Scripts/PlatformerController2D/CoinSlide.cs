@@ -4,7 +4,7 @@ using System.Collections;
 public class CoinSlide : PausableMonoBehavior 
 {
     CircleCollider2D col;
-    float slideSpeed = 1.0f;
+    public float slideSpeed = 1.0f;
     CharacterController2D controller;
     Vector2 vel;
     public float gravity = 15.0f;
@@ -18,11 +18,15 @@ public class CoinSlide : PausableMonoBehavior
 	// Update is called once per frame
 	void Update () 
     {
+        if(_transform.position.y < -10)
+        {
+            gameObject.Recycle();
+        }
         vel = controller.velocity;
 
 	   if(controller.isGrounded)
        {
-           vel.x = StaticGameVariables.gameSpeed * slideSpeed * Time.deltaTime;
+           vel.x = -StaticGameVariables.gameSpeed * slideSpeed;
        }
        if(col.IsTouchingLayers(LayerMask.NameToLayer("player")))
        {
