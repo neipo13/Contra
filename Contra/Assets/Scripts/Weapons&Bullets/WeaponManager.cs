@@ -31,4 +31,21 @@ public class WeaponManager : MonoBehaviour
             currentWeapon = weaponA;
         }
     }
+
+    public void SwapToWeapon(char weapLetter)
+    {
+        switch(char.ToUpper(weapLetter))
+        {
+            case 'A':
+                weaponB.enabled = spriteB.enabled = false;
+                weaponA.enabled = spriteA.enabled = true;
+                currentWeapon = weaponA;
+                break;
+            case 'B':
+                weaponA.enabled = spriteA.enabled = false;
+                weaponB.enabled = spriteB.enabled = true;
+                currentWeapon = weaponB;
+                break;
+        }
+    }
 }

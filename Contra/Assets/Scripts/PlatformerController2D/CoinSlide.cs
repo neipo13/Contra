@@ -8,16 +8,26 @@ public class CoinSlide : PausableMonoBehavior
     CharacterController2D controller;
     Vector2 vel;
     public float gravity = 15.0f;
+    public float lifeTime = 5.0f;
+    protected float remainingLife;
+
 
     void Start()
     {
         col = GetComponent<CircleCollider2D>();
         controller = GetComponent<CharacterController2D>();
+        remainingLife = lifeTime;
     }
 
 	// Update is called once per frame
 	void Update () 
     {
+        slideSpeed = StaticGameVariables.gameSpeed * 1.5f;
+        remainingLife -= Time.deltaTime;
+        if (remainingLife <= 0.0f)
+        {
+            gameObject.Recycle();
+        }
         if(_transform.position.y < -10)
         {
             gameObject.Recycle();
@@ -26,11 +36,7 @@ public class CoinSlide : PausableMonoBehavior
 
 	   if(controller.isGrounded)
        {
-           vel.x = -StaticGameVariables.gameSpeed * slideSpeed;
-       }
-       if(col.IsTouchingLayers(LayerMask.NameToLayer("player")))
-       {
-           gameObject.Recycle();
+           vel.x = -slideSpeed;
        }
        vel.y -= gravity * Time.deltaTime;
 	}

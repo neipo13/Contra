@@ -4,7 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(CharacterController2D))]
 public class FlyingEnemyController : PausableMonoBehavior
 {
-    public float moveSpeed = 6.0f;                          //enemy's movement speed
+    public float startMoveSpeed = 3.0f;                          //enemy's movement speed
+    protected float moveSpeed;
     public float gravity = 15.0f;                           //how gravity effects the character
 
     public float raycastDist = 1.0f;                        //distance from center to raycast down for cliff/ledge detection
@@ -54,6 +55,7 @@ public class FlyingEnemyController : PausableMonoBehavior
         //if game is not paused
         if (!paused)
         {
+            moveSpeed = startMoveSpeed + (StaticGameVariables.gameSpeed * 1.5f);
             _sm.Update();
         }
     }

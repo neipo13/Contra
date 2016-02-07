@@ -25,6 +25,9 @@ public class Weapon : PausableMonoBehavior
     protected float cameraOrthoSize = 5;                    //gets the camera size for orthographic camera
     protected Transform crosshairTrans;                        //the transform of the crosshair
 
+    protected AudioSource audioSource;                      //cached source component since it will be used often
+    public AudioClip shotSound;                             //the gunshot sound effect
+
     [Range(-1f, 1f)]
     public float bulletVelocityY = 0.0f;                    //
 
@@ -35,6 +38,7 @@ public class Weapon : PausableMonoBehavior
         projectileType.CreatePool(clipSize + 1);
         camShake = Camera.main.GetComponent<CameraShake>();
         crosshairTrans = GameObject.Find("crosshair").GetComponent<Transform>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public virtual void Update()
@@ -57,6 +61,9 @@ public class Weapon : PausableMonoBehavior
         {
             if(currentInClip > 0)
             {
+                //play the shot effect
+                audioSource.pitch = Random.Range(0.8f, 1.2f);
+                audioSource.PlayOneShot(shotSound);
                 //create a bullet
                 GameObject bullet = projectileType.Spawn(_transform.position + (Vector3)muzzleLocation);
                 float x = crosshairTrans.position.x - _transform.position.x + Random.Range(-bulletInaccuracy, bulletInaccuracy);
@@ -80,7 +87,7 @@ public class Weapon : PausableMonoBehavior
         }
     }
 
-    public void Reload()
+    public virtual void Reload()
     {
         //check if currently reloading
         //if not begin reload

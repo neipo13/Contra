@@ -30,6 +30,8 @@ public class EnemyCollisionHandler : MonoBehaviour
         {
             //Debug.Log("Player hit!");
             _transform.parent.gameObject.Recycle();
+            PausableMonoBehavior.paused = true;
+            GameObject.Find("GameMaster").SendMessage("EndRun");
         }
         else if (col.collider.tag == "enemyDestroyer")
         {

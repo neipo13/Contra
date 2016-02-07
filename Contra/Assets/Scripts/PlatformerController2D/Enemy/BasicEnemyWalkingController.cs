@@ -4,7 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(CharacterController2D))]
 public class BasicEnemyWalkingController : PausableMonoBehavior
 {
-    public float moveSpeed = 6.0f;                          //enemy's movement speed
+    public float startMoveSpeed = 4.0f;                          //enemy's movement speed
+    protected float moveSpeed;
     public float gravity = 15.0f;                           //how gravity effects the character
 
     public float raycastDist = 1.0f;                        //distance from center to raycast down for cliff/ledge detection
@@ -27,6 +28,7 @@ public class BasicEnemyWalkingController : PausableMonoBehavior
     public override void Awake()
     {
         base.Awake();
+        moveSpeed = startMoveSpeed + StaticGameVariables.gameSpeed;
         controller = GetComponent<CharacterController2D>();
         controller.velocity = new Vector2(moveSpeed * direction, 0f);
         raycastVec = new Vector2(raycastDist, 0);
@@ -52,6 +54,7 @@ public class BasicEnemyWalkingController : PausableMonoBehavior
         //if game is not paused
         if (!paused)
         {
+            moveSpeed = startMoveSpeed + (StaticGameVariables.gameSpeed * 1.5f);
             _sm.Update();
         }
     }

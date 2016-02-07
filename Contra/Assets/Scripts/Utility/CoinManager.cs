@@ -6,6 +6,7 @@ public class CoinManager : MonoBehaviour
 {
     public GameObject CoinObject;
     public int coins;
+    public int totalCoins;
     public Text coinText;
 
 	// Use this for initialization
@@ -13,6 +14,8 @@ public class CoinManager : MonoBehaviour
     {
         CoinObject.CreatePool(30);
         coins = 0;
+        totalCoins = Soomla.Store.StoreInventory.GetItemBalance(ContraForeverAssets.CoinCurrencyID);
+        coinText.text = (totalCoins + coins).ToString() + " c";
 	}
 
 
@@ -28,8 +31,8 @@ public class CoinManager : MonoBehaviour
 
     public void CoinCollected()
     {
-        Debug.Log("Coin COllected");
+        //Debug.Log("Coin COllected");
         coins += 1;
-        coinText.text = "coins: " + coins;
+        coinText.text = (totalCoins + coins).ToString();
     }
 }

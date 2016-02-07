@@ -5,11 +5,11 @@ public class EnemyHealth : MonoBehaviour
 {
     public int maxHp = 3;
     protected int hp = 0;
-    CoinManager coinManager;
+    DropManager dropManager;
 
     void Start()
     {
-        coinManager = GameObject.Find("GameMaster").GetComponent<CoinManager>();
+        dropManager = GameObject.Find("GameMaster").GetComponent<DropManager>();
     }
 
     void Init()
@@ -29,7 +29,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void Killed()
     {
-        coinManager.SpawnCoins(3, transform.position);
+        dropManager.SpawnDrop(transform.position);
         maxHp = hp;
         gameObject.Recycle();
     }
